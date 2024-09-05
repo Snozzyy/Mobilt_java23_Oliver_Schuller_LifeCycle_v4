@@ -11,7 +11,7 @@
         android:id="@+id/credTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Personal data"
+        android:text="Data"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
