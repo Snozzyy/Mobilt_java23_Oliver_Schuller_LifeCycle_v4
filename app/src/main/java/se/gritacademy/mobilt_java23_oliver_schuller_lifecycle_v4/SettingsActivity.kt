@@ -3,7 +3,6 @@ package se.gritacademy.mobilt_java23_oliver_schuller_lifecycle_v4
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -15,8 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsActivity : AppCompatActivity() {
-    
-    val TAG = "oliver"
 
     // UI components
     private lateinit var firstNameField: EditText
@@ -34,10 +31,8 @@ class SettingsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_settings)
 
-        var sharedPref: SharedPreferences = this.getSharedPreferences("preference", MODE_PRIVATE)
-        var editor: SharedPreferences.Editor = sharedPref.edit()
-
-        Log.i(TAG, "onCreate: Create")
+        val sharedPref: SharedPreferences = this.getSharedPreferences("preference", MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
 
         firstNameField = findViewById(R.id.inputFirstName)
         lastNameField = findViewById(R.id.inputLastName)

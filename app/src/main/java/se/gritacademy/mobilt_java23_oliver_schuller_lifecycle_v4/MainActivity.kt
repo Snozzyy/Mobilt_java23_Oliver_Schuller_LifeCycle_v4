@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     // UI components
     private lateinit var loginBtn: Button
+    private lateinit var registerBtn: Button
     private lateinit var usernameInput: EditText
     private lateinit var passwordInput: EditText
 
@@ -34,6 +35,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Wrong username or password, try again",
                     Toast.LENGTH_LONG).show()
             }
+        }
+
+        registerBtn = findViewById(R.id.registerBtn)
+        registerBtn.setOnClickListener {
+            val registerIntent = Intent(this, RegistrationActivity::class.java)
+            startActivity(registerIntent)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
