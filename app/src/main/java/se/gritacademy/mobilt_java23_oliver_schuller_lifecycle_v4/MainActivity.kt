@@ -2,10 +2,8 @@ package se.gritacademy.mobilt_java23_oliver_schuller_lifecycle_v4
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +12,10 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
+    // UI components
     private lateinit var loginBtn: Button
     private lateinit var usernameInput: EditText
     private lateinit var passwordInput: EditText
-    private val TAG = "oliver"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         loginBtn = findViewById(R.id.loginBtn)
         loginBtn.setOnClickListener {
-            if (usernameInput.text.toString() == "" && passwordInput.text.toString() == "") {
-                val i = Intent(this, LoggedInActivity::class.java)
-                startActivity(i)
+            if (usernameInput.text.toString() == "oliver" && passwordInput.text.toString() == "oliver") {
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                startActivity(homeIntent)
             } else {
-                Toast.makeText(this, "Wrong username or password, try again", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Wrong username or password, try again",
+                    Toast.LENGTH_LONG).show()
             }
         }
 

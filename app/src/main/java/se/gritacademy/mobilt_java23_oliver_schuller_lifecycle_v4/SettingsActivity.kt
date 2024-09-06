@@ -1,8 +1,8 @@
 package se.gritacademy.mobilt_java23_oliver_schuller_lifecycle_v4
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -12,9 +12,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.math.log
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class LoggedInActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
     
     val TAG = "oliver"
 
@@ -26,12 +26,13 @@ class LoggedInActivity : AppCompatActivity() {
     private lateinit var isMale: RadioButton
     private lateinit var isFemale: RadioButton
     private lateinit var saveBtn: Button
+    private lateinit var bottomNav: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_logged_in)
+        setContentView(R.layout.activity_settings)
 
         var sharedPref: SharedPreferences = this.getSharedPreferences("preference", MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPref.edit()
@@ -45,6 +46,7 @@ class LoggedInActivity : AppCompatActivity() {
         isMale = findViewById(R.id.radioMale)
         isFemale = findViewById(R.id.radioFemale)
         saveBtn = findViewById(R.id.saveBtn)
+        bottomNav = findViewById(R.id.bottomNav)
 
         setFields(sharedPref)
 
@@ -57,6 +59,26 @@ class LoggedInActivity : AppCompatActivity() {
             editor.putBoolean("isFemale", isFemale.isChecked).apply()
 
             Toast.makeText(this, "Data saved", Toast.LENGTH_LONG).show()
+        }
+
+        bottomNav.selectedItemId = R.id.settingsItem
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeItem -> {
+                    val homeIntent = Intent(this, HomeActivity::class.java)
+                    startActivity(homeIntent)
+                    true
+                }
+                R.id.settingsItem -> {
+                    true
+                }
+                R.id.logoutItem -> {
+                    val logoutIntent = Intent(this, MainActivity::class.java)
+                    startActivity(logoutIntent)
+                    true
+                }
+                else -> false
+            }
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
